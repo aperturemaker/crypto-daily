@@ -15,19 +15,24 @@ data = requests.get(url).json()
 report = f"""
 <h1>Crypto Daily</h1>
 
+<p>Rapport automatique généré par GitHub Actions</p>
+
 <ul>
-<li>BTC : ${data['bitcoin']['usd']}</li>
-<li>ETH : ${data['ethereum']['usd']}</li>
-<li>XRP : ${data['ripple']['usd']}</li>
-<li>SOL : ${data['solana']['usd']}</li>
+  <li>BTC : ${data['bitcoin']['usd']}</li>
+  <li>ETH : ${data['ethereum']['usd']}</li>
+  <li>XRP : ${data['ripple']['usd']}</li>
+  <li>SOL : ${data['solana']['usd']}</li>
 </ul>
 """
 
-resend.Emails.send({
-    "from": "onboarding@resend.dev",
-    "to": "aperturemaker@gmail.com",
-    "subject": "Crypto Daily Test from GitHub",
-    "html": report
-})
+resend.Emails.send(
+    {
+        "from": "onboarding@resend.dev",
+        "to": "aperturemaker@gmail.com",
+        "subject": "Crypto Daily Test from GitHub",
+        "html": report,
+    }
+)
 
-print("Email sent")
+print("Email sent successfully")
+``
