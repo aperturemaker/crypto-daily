@@ -1,4 +1,8 @@
+import os
 import requests
+import resend
+
+resend.api_key = os.environ["RESEND_API_KEY"]
 
 url = (
     "https://api.coingecko.com/api/v3/simple/price"
@@ -8,10 +12,22 @@ url = (
 
 data = requests.get(url).json()
 
-print("=== CRYPTO DAILY ===")
-print()
+report = f"""
+<h1>Crypto Daily</h1>
 
-print(f"BTC : ${data['bitcoin']['usd']}")
-print(f"ETH : ${data['ethereum']['usd']}")
-print(f"XRP : ${data['ripple']['usd']}")
-print(f"SOL : ${data['solana']['usd']}")
+<ul>
+<li>BTC : ${data['bitcoin']['usd']}</li>
+<li>ETH : ${data['ethereum']['usd']}</li>
+<li>XRP : ${data['ripple']['usd']}</li>
+<li>SOL : ${data['solana']['usd']}</li>
+</ul>
+"""
+
+resend.Emails.send({
+    "from": "onboarding@resend.dev",
+    "to": "aperturemaker@gmail.com",
+    "subject": "Crypto Daily Test from GitHub",
+    "html": report
+})
+
+print("Email sent")
