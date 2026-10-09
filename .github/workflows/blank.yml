@@ -1,6 +1,11 @@
-name: Crypto Daily Test
+name: Crypto Daily
 
 on:
+  schedule:
+    # Exécution quotidienne automatique
+    - cron: '0 7 * * *'
+
+  # Permet de continuer à lancer manuellement le workflow
   workflow_dispatch:
 
 jobs:
@@ -17,9 +22,11 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Execute Python Script
+      - name: Execute Crypto Daily
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: python app.py
