@@ -1,5 +1,4 @@
 import requests
-import json
 
 url = (
     "https://api.coingecko.com/api/v3/simple/price"
@@ -7,7 +6,12 @@ url = (
     "&vs_currencies=usd"
 )
 
-response = requests.get(url)
-data = response.json()
+data = requests.get(url).json()
 
-print(json.dumps(data, indent=2))
+print("=== CRYPTO DAILY ===")
+print()
+
+print(f"BTC : ${data['bitcoin']['usd']}")
+print(f"ETH : ${data['ethereum']['usd']}")
+print(f"XRP : ${data['ripple']['usd']}")
+print(f"SOL : ${data['solana']['usd']}")
