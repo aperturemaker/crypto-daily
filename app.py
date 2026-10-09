@@ -3,6 +3,7 @@ import requests
 url = "https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT"
 
 response = requests.get(url)
-data = response.json()
 
-print(f"BTCUSDT = {data['price']}")
+print("HTTP Status:", response.status_code)
+print("Response:")
+print(response.text)
