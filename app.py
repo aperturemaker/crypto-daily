@@ -1,0 +1,1 @@
+print("Crypto Daily started")
