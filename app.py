@@ -35,4 +35,3 @@ resend.Emails.send(
 )
 
 print("Email sent successfully")
-``
